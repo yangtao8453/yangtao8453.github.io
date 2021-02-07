@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on sheeppeach</title>
+    <link>https://yangtao8453.github.io/post/</link>
+    <description>Recent content in Posts on sheeppeach</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 07 Feb 2021 17:22:45 +0800</lastBuildDate><atom:link href="https://yangtao8453.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux常用命令</title>
+      <link>https://yangtao8453.github.io/post/blog/</link>
+      <pubDate>Sun, 07 Feb 2021 17:22:45 +0800</pubDate>
+      
+      <guid>https://yangtao8453.github.io/post/blog/</guid>
+      <description>图形界面模式与命令行模式切换 命令行模式切换
+Ctrl + Alt + F1 ~ F6 命令行模式切换到图形界面
+Ctrl + Alt + F7 关机 将数据从内存同步到硬盘中
+sync 关机或重启
+shutdown -h -now shutdown -r +10 :: h为关机，如果为r则是重启，now为时间，now为立刻，+x为x分钟后关机，XX:XX表示XX:XX时刻关机 poweroff # 关闭电源 文件基本属性 显示文件属性及文件所属用户和组
+ll ls -l 更改文件属组
+chgrp [-R] 属组名 文件名 # -R：递归更改文件属组，即更改该目录下所有文件的属组 更改文件属主，也可以同时更改文件属组
+chown [-R] 属主名 文件名 chown [-R] 属主名:属组名 文件名 chown bin install.log	# 将install.log的拥有者改为bin chown root:root install.log	# 将install.log的拥有者与群组改回root 变更文件权限（数字类型）
+chmod [-R] xyz 文件或目录	chomd 777 .bashrc # -R表示递归的持续变更，即目录下所有文件都会变更 # xyz为数字类型的权限属性，每个数字由R=4、W=2、X=1相加而成，x为拥有者，y为组，x为其他用户 变更文件权限（符号类型）</description>
+    </item>
+    
+  </channel>
+</rss>

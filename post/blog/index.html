@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Linux常用命令 // sheeppeach</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.80.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://yangtao8453.github.io/css/main.min.88e7083eff65effb7485b6e6f38d10afbec25093a6fac42d734ce9024d3defbd.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linux常用命令"/>
+<meta name="twitter:description" content="图形界面模式与命令行模式切换 命令行模式切换
+Ctrl &#43; Alt &#43; F1 ~ F6 命令行模式切换到图形界面
+Ctrl &#43; Alt &#43; F7 关机 将数据从内存同步到硬盘中
+sync 关机或重启
+shutdown -h -now shutdown -r &#43;10 :: h为关机，如果为r则是重启，now为时间，now为立刻，&#43;x为x分钟后关机，XX:XX表示XX:XX时刻关机 poweroff # 关闭电源 文件基本属性 显示文件属性及文件所属用户和组
+ll ls -l 更改文件属组
+chgrp [-R] 属组名 文件名 # -R：递归更改文件属组，即更改该目录下所有文件的属组 更改文件属主，也可以同时更改文件属组
+chown [-R] 属主名 文件名 chown [-R] 属主名:属组名 文件名 chown bin install.log	# 将install.log的拥有者改为bin chown root:root install.log	# 将install.log的拥有者与群组改回root 变更文件权限（数字类型）
+chmod [-R] xyz 文件或目录	chomd 777 .bashrc # -R表示递归的持续变更，即目录下所有文件都会变更 # xyz为数字类型的权限属性，每个数字由R=4、W=2、X=1相加而成，x为拥有者，y为组，x为其他用户 变更文件权限（符号类型）"/>
+
+    <meta property="og:title" content="Linux常用命令" />
+<meta property="og:description" content="图形界面模式与命令行模式切换 命令行模式切换
+Ctrl &#43; Alt &#43; F1 ~ F6 命令行模式切换到图形界面
+Ctrl &#43; Alt &#43; F7 关机 将数据从内存同步到硬盘中
+sync 关机或重启
+shutdown -h -now shutdown -r &#43;10 :: h为关机，如果为r则是重启，now为时间，now为立刻，&#43;x为x分钟后关机，XX:XX表示XX:XX时刻关机 poweroff # 关闭电源 文件基本属性 显示文件属性及文件所属用户和组
+ll ls -l 更改文件属组
+chgrp [-R] 属组名 文件名 # -R：递归更改文件属组，即更改该目录下所有文件的属组 更改文件属主，也可以同时更改文件属组
+chown [-R] 属主名 文件名 chown [-R] 属主名:属组名 文件名 chown bin install.log	# 将install.log的拥有者改为bin chown root:root install.log	# 将install.log的拥有者与群组改回root 变更文件权限（数字类型）
+chmod [-R] xyz 文件或目录	chomd 777 .bashrc # -R表示递归的持续变更，即目录下所有文件都会变更 # xyz为数字类型的权限属性，每个数字由R=4、W=2、X=1相加而成，x为拥有者，y为组，x为其他用户 变更文件权限（符号类型）" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yangtao8453.github.io/post/blog/" />
+<meta property="article:published_time" content="2021-02-07T17:22:45+08:00" />
+<meta property="article:modified_time" content="2021-02-07T17:22:45+08:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://yangtao8453.github.io/"><img class="app-header-avatar" src="/avatar.jpg" alt="John Doe" /></a>
+      <h1>sheeppeach</h1>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/">Home</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/tags/">Tags</a>
+      </nav>
+      <p>欢迎来到sheeppeach的个人博客</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/yangtao8453" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+          <a target="_blank" href="yangtao8453@qq.com" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Linux常用命令</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Feb 7, 2021
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          6 min read
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <h2 id="图形界面模式与命令行模式切换">图形界面模式与命令行模式切换</h2>
+<p><strong>命令行模式切换</strong></p>
+<pre><code>Ctrl + Alt + F1 ~ F6
+</code></pre><p><strong>命令行模式切换到图形界面</strong></p>
+<pre><code>Ctrl + Alt + F7
+</code></pre><h2 id="关机">关机</h2>
+<p><strong>将数据从内存同步到硬盘中</strong></p>
+<pre><code>sync
+</code></pre><p><strong>关机或重启</strong></p>
+<pre><code>shutdown -h -now   
+shutdown -r +10
+:: h为关机，如果为r则是重启，now为时间，now为立刻，+x为x分钟后关机，XX:XX表示XX:XX时刻关机
+
+poweroff      # 关闭电源
+</code></pre><h2 id="文件基本属性">文件基本属性</h2>
+<p><strong>显示文件属性及文件所属用户和组</strong></p>
+<pre><code>ll
+</code></pre><pre><code>ls -l
+</code></pre><p><strong>更改文件属组</strong></p>
+<pre><code>chgrp [-R] 属组名 文件名         # -R：递归更改文件属组，即更改该目录下所有文件的属组
+</code></pre><p><strong>更改文件属主，也可以同时更改文件属组</strong></p>
+<pre><code>chown [-R] 属主名 文件名
+chown [-R] 属主名:属组名 文件名
+
+chown bin install.log				# 将install.log的拥有者改为bin
+chown root:root install.log			# 将install.log的拥有者与群组改回root
+</code></pre><p><strong>变更文件权限（数字类型）</strong></p>
+<pre><code>chmod [-R] xyz 文件或目录			
+chomd 777 .bashrc
+# -R表示递归的持续变更，即目录下所有文件都会变更
+# xyz为数字类型的权限属性，每个数字由R=4、W=2、X=1相加而成，x为拥有者，y为组，x为其他用户
+</code></pre><p><strong>变更文件权限（符号类型）</strong></p>
+<pre><code>chmod u=rwx,g=rx,o=r test1    	    # 修改test1的权限，u代表拥有者，g代表组，o代表其他
+chmod a-x test1				   		# a代表所有用户，将所有用户的执行权限都去除，去除用 - ，增加用 +
+</code></pre><h2 id="linux系统目录结构">Linux系统目录结构</h2>
+<p><img src="https://img-blog.csdnimg.cn/20210202150819822.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjI5ODA4OQ==,size_16,color_FFFFFF,t_70" alt="Linux系统目录结构"></p>
+<ul>
+<li>/bin：binaries（二进制文件），存放最常用的命令</li>
+<li>/boot：启动 Linux 时使用的一些核心文件，包括一些连接文件以及镜像文件</li>
+<li>/dev：Device（设备），存放 Linux 的外部设备，Linux 中访问设备和访问文件的方式是相同的</li>
+<li>/etc：Etcetera（等等），存放所有的系统管理所需要的的配置文件和子目录</li>
+<li>/hone：用户的主目录，每个用户都有自己的主目录，一般以账户名为目录名</li>
+<li>/lib：Library（库），存放系统最基本的动态连接共享库，类似于 Windows 的 DLL 文件，几乎所有程序都需要使用这些库</li>
+<li>/lost+found：一般是空目录，系统非法关机后这里就存放一些文件</li>
+<li>/mnt：为了让用户临时挂载别的文件系统的目录，可以将光驱挂载到 /mnt/ 上，进入该目录就可以查看光驱里的内容了</li>
+<li>/opt：optional（可选），给主机额外安装软件所摆放的目录，默认为空</li>
+<li>/proc：Processes（进程），/proc 是一种伪文件系统（虚拟文件系统），存储当前内核运行状态的一种特殊文件，是一个虚拟目录，是系统内存的映射，可以通过直接访问这个目录来获取系统信息</li>
+<li>/root：系统管理员（超级权限者）的用户主目录</li>
+<li>/sbin：Superuser binaries（超级用户的二进制文件），存放系统管理员使用的系统管理程序</li>
+<li>/selinux：Redhat/CentOS 特有目录，Selinux 是一个安全机制，类似于 Windows 的防火墙，该目录用于存放 selinux 相关文件</li>
+<li>/srv：存放服务启动之后需要提取的数据</li>
+<li>/sys：该目录下安装了 2.6 内核中新出现的一个文件系统 sysfs，sysfs 文件系统集成了：针对进程信息的 proc 文件系统、针对设备的 devfs 文件系统、针对伪终端的 devpts 文件系统，该文件系统是内核设备树的一个直观反映，当一个内核对象被创建的时候，对应的文件和目录也在内核对象子系统中被创建</li>
+<li>/tmp：temporary，存放一些临时文件</li>
+<li>/usr：unix shared resources（共享资源），很多应用程序和文件都存放在该目录下，类似于 Windows 的 program files 目录</li>
+<li>/usr/bin：系统用户使用的应用程序</li>
+<li>/user/src：内核源代码默认的放置目录</li>
+<li>/var：variable，存放着不断扩充的东西，习惯将经常被修改的目录存放在该目录下，包括各种日志文件</li>
+<li>/run：临时文件系统，存储系统启动以来的信息，系统重启时，目录下的文件应被清楚或删掉，如果系统上有 /var/run 目录，应该让它指向 run</li>
+</ul>
+<h2 id="文件与目录管理">文件与目录管理</h2>
+<p><strong>ls（列出目录）</strong>，参数：</p>
+<pre><code>ls [-adl] 目录名称
+# -a：全部的文件，连同隐藏的文件（开头为 .的文件）一起列出来
+# -d：仅列出目录本身，而不是列出目录内的文件数据
+# -l：长数据串列出，包含文件的属性和权限等数据
+
+ls -al ~				# 将家目录下所有的文件列出来（包括隐藏文件和文件属性）
+</code></pre><p><strong>cd（切换目录）</strong></p>
+<pre><code>cd [相对路径或绝对路径]
+
+mkdir runoob 		    # 使用mkdir命令创建runoob目录
+cd /root/runoob/		# 使用绝对路径切换到runoob目录
+cd ./runoob/		    # 使用相对路径切换到runoob目录
+cd ~        			# 回到家目录
+cd ..					# 回到上级目录
+</code></pre><p><strong>pwd（显示目前所在的目录）</strong></p>
+<pre><code> pwd [-P]
+ # -P：显示出确实的路径，而非使用连接（link）路径
+ 
+pwd
+/var/mail				# 显示的为连结档，连接到 /var/spool/mail 列出目前的工作目录
+pwd -P
+/var/spool/mail		    # 显示正确的完整路径
+</code></pre><p><strong>mkdir（创建新目录）</strong></p>
+<pre><code>mkdir [-mp] 目录名称
+# -m：在创建目录时可以直接配置文件的权限
+# -p：可以创建多层目录
+
+mkdir test1				# 创建目录test1
+mkdir -p test1/test2 	# 创建目录 test1/test2
+mkdir -m 777 test1		# 创建目录test1并设置权限
+</code></pre><p><strong>rmdir（删除空目录）</strong></p>
+<pre><code>rmdir [-p] 目录名
+# -P：连同上一级空的目录也删除
+
+rmdir runoob/			# 删除runoob目录
+rmdir test1/test2		# 删除test2目录及底下的空目录test1
+</code></pre><p><strong>cp（复制文件或目录）</strong></p>
+<pre><code>cp [-adfilprsu] 来源档(source) 目标档(destination)
+# -a：相当于 -pdr
+# -d：若来源当为连结档的属性（link file），则复制连结档属性而非文件本身
+# -f：强制，若目标文件已存在且无法开启，则移除后再尝试一次
+# -i：若目标档已存在，在覆盖时会先询问动作的进行
+# -l：进行硬式连结（hard link）的连结档创建，而非复制文件本身
+# -p：连同文件的属性一起复制过去，而非使用默认属性（备份常用）
+# -r：递归持续复制，用于目录的复制行为
+# -s：复制成为符号连结档（symbolic link），即 “捷径” 文件
+# -u：若destination比source旧才升级destination
+
+cp ~/.bashrc /tmp/bashrc      # 将root目录下的 .bashrc 复制到 /tmp 下
+</code></pre><p><strong>rm（移除文件或目录）</strong></p>
+<pre><code>rm [-fir] 文件或目录
+# -f：force，忽略不存在的文件，不出现警告信息
+# -i：互动模式，删除前询问使用者是否动作
+# -r：递归删除，常用于目录的删除
+
+rm -i bashrc		 	# 将bashrc目录删除
+</code></pre><p><strong>mv（移动文件或目录，或修改名称）</strong></p>
+<pre><code>mv [-fiu] source destination
+# -f：force，如果目标文件存在，则直接覆盖
+# -i：若目标文件存在，询问是否覆盖
+# -u：若目标文件存在，且source比较新，才会升级（update）
+
+cd /tmp					# 进入tmp目录
+cp ~/.bashrc bashrc		# 复制文件bashrc
+mkdir mvtest			# 创建目录mvtest
+mv bashrc mvtest		# 将bashrc移动到mvtest
+mv mvtest mvtest2		# 将mvtest重命名为mvtest2
+</code></pre><h2 id="文件内容查看">文件内容查看</h2>
+<p><strong>cat：由第一行开始显示文件内容</strong></p>
+<pre><code>cat [-AbEnTv]
+# -A：相当于-vET的整合选项，可以列出一些特殊字符而不是空白而已
+# -b：列出行号，仅针对非空白行做行号显示，空白行不标出行号
+# -E：将结尾的断行字节 $ 显示出来
+# -n：列印出行号，连同空白行也有行号，与 -b 的选项不同
+# -T：将 [tab] 按键以 ^| 显示出来
+# -v：列出一些看不出来的特殊字符
+
+cat /etc/issue			# 查看 /etc/issue 这个文件的内容
+</code></pre><p><strong>tac：由最后一行开始显示文件内容</strong></p>
+<pre><code>tac /etc/issue
+</code></pre><p><strong>nl：显示行号</strong></p>
+<pre><code>nl [-bnw] 文件
+# -b：指定行号指定的方式，主要有两种：-b a：表示不论是否为空行，都列出行号；-b t：如果有空行，空的那行不要列出行号
+# -n：列出行号表示的方法，主要有三种：-n ln：行号在荧幕的最左方显示；-n rn：行号在自己栏位上的最右方显示，且不加0；-rz：行号在自己栏位上最右方显示，且加0
+# -w：行号栏位占用的位数
+
+nl /etc/issue			# 用nl列出/etc/issue的内容
+</code></pre><p><strong>more：一页一页翻动</strong></p>
+<pre><code>more /etc/man_db.config
+#
+# Generated automatically from man.conf.in by the
+# configure script.
+#
+# man.conf from man-1.6d
+....(中间省略)....
+--More--(28%)  &lt;== 重点在这一行，光标也会在这里等待命令
+
+# 空白键（space）：向下翻一页
+# Enter：向下翻一行
+# /字串：显示的内容当中，向下搜寻 “字串” 这个关键字
+# :f：立刻显示出档名以及目前显示的行数
+# q：立即离开more，即不再显示该文件内容
+# b 或 [Ctrl]-b：往回翻页，只对文件有用，对管线无用
+</code></pre><p><strong>less：一页一页翻动</strong></p>
+<pre><code>less /etc/man.config
+#
+# Generated automatically from man.conf.in by the
+# configure script.
+#
+# man.conf from man-1.6d
+....(中间省略)....
+:   &lt;== 这里可以等待输入命令
+
+# 空白键：向下翻动一页
+# [pagedown]：向下翻动一页；
+# [pageup]：向上翻动一页；
+# /字串：向下搜寻『字串』的功能；
+# ?字串：向上搜寻『字串』的功能；
+# n：重复前一个搜寻 (与 / 或 ? 有关！)
+# N：反向的重复前一个搜寻 (与 / 或 ? 有关！)
+# q：离开 less 这个程序；
+</code></pre><p><strong>head：读取文件前面几行</strong></p>
+<pre><code>head [-n number] 文件
+# -n：后面接数字，代表显示几行的意思，不加默认显示10行
+
+head -n 20 /etc/man.config			# 显示文件前20行内容
+</code></pre><p><strong>tail：取出文件后面几行</strong></p>
+<pre><code>tail [-n number] 文件
+# -n：后面接数字，代表显示几行的意思，不加默认显示10行
+# -f：表示持续侦测后面所接的档名，要等到按下 [Ctrl]-c 才会结束tail的侦测
+
+tail -n 20 /etc/man.config			# 显示最后20行的内容
+</code></pre><h2 id="linux用户管理">Linux用户管理</h2>
+<p><strong>添加新的用户</strong></p>
+<pre><code>useradd [option] 用户名
+# -c comment：指定一段注释性描述
+# -d：指定用户主目录，如果不存在，可以通过 -m 选项创建主目录
+# -g：指定用户所属用户组
+# -G：指定用户所属附加组
+# -s：指定用户的登录Shell
+# -u：指定用户的用户号，如果同时有 -o 选项，则可以重复使用其他用户的标识号
+
+useradd -d /home/sam -m sam						# 创建一个用户 sam，-d 和 -m 用于指定用户主目录
+useradd -s /bin/sh -g group -G adm,root gem		#创建用户gem，登录Shell是 /bin/sh，属于group用户组，同时又属于adm和root用户组，group是主组
+</code></pre><p><strong>删除用户</strong></p>
+<pre><code>userdel [option] 用户名
+# -r：把用户的主目录一起删除
+
+userdel -r sam
+# 删除用户sam在系统文件中的记录，同时删除用户的主目录
+</code></pre><p><strong>修改账号</strong></p>
+<pre><code>usermod [option] 用户名
+# -c comment：指定一段注释性描述
+# -d：指定用户主目录，如果不存在，可以通过 -m 选项创建主目录
+# -g：指定用户所属用户组
+# -G：指定用户所属附加组
+# -s：指定用户的登录Shell
+# -u：指定用户的用户号，如果同时有 -o 选项，则可以重复使用其他用户的标识号
+
+usermod -s /bin/ksh -d /home/z -g developer sam
+# 将用户sam的登录Shell修改为ksh，主目录修改为 /home/z，用户组改为developer
+</code></pre><p><strong>用户口令的管理</strong></p>
+<pre><code>passwd [option] 用户名
+# -l：锁定口令，即禁用账号
+# -u：口令解锁
+# -d：使账号无口令
+# -f：强迫用户下次登录时修改口令
+# 无参：默认修改当前用户的口令，超级用户可修改其他用户
+</code></pre><h2 id="系统用户组的管理">系统用户组的管理</h2>
+<p><strong>增加一个新的用户组</strong></p>
+<pre><code>groupadd [option] 用户组
+# -g GID：指定新用户组的组标识号（GID），0 为 root 的标识号，1~99为系统保留，用作管理账号，普通用户从100开始
+# -o：一般与 -g 选项同时使用，表示新用户组的GID可以与系统已有的用户组的GID相同
+
+groupadd -g 101 group1			# 新增一个组 group1，标识号是101
+</code></pre><p><strong>删除一个用户组</strong></p>
+<pre><code>groupdel 用户组
+
+groupdel group1			# 删除用户组group1
+</code></pre><p><strong>修改用户组属性</strong></p>
+<pre><code>groupmod [option] 用户组
+# -g GID：为用户组指定新的组标识号
+# -g 与 -o 同时使用，用户组新GID可以与系统已有用户组的GID相同
+# -n：新用户组将用户组的名字改为新名字
+
+groupmod -g 102 group2					# 将group2的组标识号修改为102
+groupmod -g 1000 -n group3 group2		# 将group2标识号改为1000，组名改为group3
+</code></pre><p><strong>切换用户组</strong></p>
+<pre><code># 如果一个用户属于多个用户组，那么可以通过切换用户组获得不同的权限
+newgrp root			# 将当前用户切换到 root 用户组，前提是 root 用户组是当前用户的主组或附加组
+</code></pre><p><strong>批量添加用户</strong></p>
+<ol>
+<li>编辑一个文本用户文件，注意按照 /etc/passwd 密码文件的格式书写，注意每个用户的用户名、UID、宿主目录都不可以相同，密码栏可空白或输入 x 号，如</li>
+</ol>
+<pre><code>user001::600:100:user:/home/user001:/bin/bash
+user002::601:100:user:/home/user002:/bin/bash
+user003::602:100:user:/home/user003:/bin/bash
+user004::603:100:user:/home/user004:/bin/bash
+user005::604:100:user:/home/user005:/bin/bash
+user006::605:100:user:/home/user006:/bin/bash
+</code></pre><ol start="2">
+<li>以 root 身份执行命令 /usr/sbin/newusers，从刚创建的用户文件 user.txt 中导入用户数据，创建用户，如</li>
+</ol>
+<pre><code>newusers &lt; user.txt
+</code></pre><ol start="3">
+<li>执行命令 /usr/sbin/pwunconv，将 /etc/shadow 产生的 shadow 密码解码，然后回写到 /etc/passwd 中，并将 /etc/shadow 的shadow 密码栏删掉，这是为了方便进行下一步的密码转换工作，即先取消 shadow password 功能</li>
+</ol>
+<pre><code>pwunconv
+</code></pre><ol start="4">
+<li>编辑每个用户的密码对照文件，如：</li>
+</ol>
+<pre><code>user001:123456
+user002:123456
+user003:123456
+user004:123456
+user005:123456
+user006:123456
+</code></pre><ol start="5">
+<li>以 root 身份执行命令 /usr/sbin/chpasswd，创建用户密码，将编码过的密码写入 /etc/passwd 的密码栏</li>
+</ol>
+<pre><code>chpasswd &lt; passwd.txt
+</code></pre><ol start="6">
+<li>确定密码经编码写入 /etc/passwd 的密码栏后，执行命令 /usr/sbin/pwconv 将密码编码为 shadow password，并将结果写入 /etc/shadow</li>
+</ol>
+<pre><code>pwconv
+</code></pre><p>完成创建，可以到 /home 下检查这些用户宿主目录的权限设置是否都正确，并验证用户密码是否正确</p>
+<h2 id="磁盘管理">磁盘管理</h2>
+<p><strong>df：列出文件系统的整体磁盘使用量</strong></p>
+<pre><code>df [-ahikHTm] [目录或文件名]
+# -a：列出所有的文件系统，包括系统特有的 /proc 等文件系统
+# -k：以 KBytes 的容量显示各文件系统
+# -m：以 MBytes 的容量显示个文件系统
+# -h：以人们比较容易阅读的 GBytes、MBytes、KBytes 等格式自行显示
+# -H：以 M=1000K 取代 M=1024K 的进位方式
+# -T：显示文件系统类型，连同该 partition 的 filesystem 名称（例如 ext3）也列出
+# -i：不用硬盘容量，而以 inode 的数量来显示
+</code></pre><p><strong>du：对文件和目录磁盘使用的空间的查看</strong></p>
+<pre><code>du [-ahskm] 文件或目录名称
+# -a：列出所有的文件与目录容量，因为默认仅统计目录底下的文件量而已
+# -h：以人们比较容易阅读的容量格式显示
+# -s：列出总量而已，而不列出每个各别的目录占用总量
+# -S：不包括子目录下的总计
+# -k：以 KBytes 的容量显示各文件系统
+# -m：以 MBytes 的容量显示个文件系统
+</code></pre><p><strong>fdisk：磁盘分区表操作工具</strong></p>
+<pre><code>fdisk [-l] 装置名称
+# -l：输出后面接的装置所有的分区内容，若仅有 fdisk -l 时，则系统将把整个系统内能够搜寻到的装置的分区列出来
+</code></pre><p><strong>磁盘格式化 make filesystem</strong></p>
+<pre><code>mkfs [-t 文件系统格式] 装置文件名
+# -t：可以接文件系统格式，例如 ext3，ext2，vfat等
+
+mkfs [tab][tab]				# 查看 mkfs 支持的文件格式
+mkfs -t ext3 /dev/hdc6		# 将分区 /dev/hdc6 格式化为 ext3 文件系统
+</code></pre><p><strong>磁盘检验 file system check</strong></p>
+<pre><code>fsck [-t 文件系统] [-ACay] 装置名称
+# -t : 给定档案系统的型式，若在 /etc/fstab 中已有定义或 kernel 本身已支援的则不需加上此参数
+# -s : 依序一个一个地执行 fsck 的指令来检查
+# -A : 对/etc/fstab 中所有列出来的 分区（partition）做检查
+# -C : 显示完整的检查进度
+# -d : 打印出 e2fsck 的 debug 结果
+# -p : 同时有 -A 条件时，同时有多个 fsck 的检查一起执行
+# -R : 同时有 -A 条件时，省略 / 不检查
+# -V : 详细显示模式
+# -a : 如果检查有错则自动修复
+# -r : 如果检查有错则由使用者回答是否修复
+# -y : 选项指定检测每个文件是自动输入yes，在不确定那些是不正常的时候，可以执行 # fsck -y 全部检查修复。
+
+fsck [tab] [tab]					# 查看系统有多少文件系统支持的 fsck 命令
+fsck -C -f -t ext3 /dev/hdc6		# 强制检测 /dev/hdc6 分区
+</code></pre><p><strong>磁盘挂载</strong></p>
+<pre><code>mount [-t 文件系统] [-L Label名] [-o 额外选项] [-n] 装置文件名 挂载点
+
+mount /dev/hdc6 /mnt/hdc6			# 将刚刚创建的 /dev/hdc6 挂载到 /mnt/hdc6 上面
+</code></pre><p><strong>磁盘卸除</strong></p>
+<pre><code>umount [-fn] 装置文件名或挂载点
+# -f：强制卸除，可用在类似网络文件系统 (NFS) 无法读取到的情况下
+# -n ：不升级 /etc/mtab 情况下卸除
+
+umount /dev/hdc6					# 卸载/dev/hdc6
+</code></pre><h2 id="vi与vim">vi与vim</h2>
+<p><img src="https://img-blog.csdnimg.cn/20210202173106538.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NjI5ODA4OQ==,size_16,color_FFFFFF,t_70" alt="Vim/Vi工作模式"></p>
+<h2 id="yum-命令">yum 命令</h2>
+<pre><code>yum [options] [command] [package ...]
+# options：可选，-h（帮助），-y（当安装过程提示选择全部为 ”yes“），-q（不显示安装的过程）
+# command：要进行的操作
+# package：安装的包名
+
+# 常用命令
+yum check-update					# 列出所有可更新的软件清单命令
+yum update							# 更新所有软件命令
+yum install &lt;package_name&gt;			# 仅安装指定的软件命令
+yum update &lt;package_name&gt;			# 仅更新指定的软件命令
+yum list							# 列出所有可安裝的软件清单命令
+yum remove &lt;pagckage_name&gt;			# 删除软件包命令
+yum search &lt;keyword&gt;				# 查找软件包命令
+yum clean packages					# 清除缓存目录下的软件包
+yum clean headers					# 清除缓存目录下的 headers
+yum clean oldheaders				# 清除缓存目录下旧的 headers
+yum clean, yum clean all (= yum clean packages; yum clean oldheaders)		# 清除缓存目录下的软件包及旧的 headers
+</code></pre><h2 id="国内-yum-源">国内 yum 源</h2>
+<p><strong>安装步骤</strong></p>
+<pre><code># 备份 /etc/yum.repos.d/CentOS-Base.repo
+mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+
+# 下载对应版本的 repo 文件，放入 /etc/yum.repos.d/
+wget http://mirrors.163.com/.help/CentOS6-Base-163.repo
+mv CentOS6-Base-163.repo CentOS-Base.repo
+
+# 生成缓存
+yum clean all
+yum makecache
+</code></pre><h2 id="解压缩">解压缩</h2>
+<pre><code>tar [-cxzvf] [文件] [目录]
+# -c：create，建立一个压缩文件
+# -x：extract，解开一个压缩文件
+# -z：是否需要 gzip 压缩
+# -v：verbose，显示压缩的过程
+# -f：使用档名，在 f 之后要立即接档名（file）
+
+tar -cvf 文件名 压缩路径 				# 压缩
+tar -xvf 文件名							# 解压
+tar -xvf 要解压的文件 -C 指定目录路径		# 加入 -C 将文件解压到指定目录
+
+# 如果文件后缀是.tar 用tar xvf来解压
+# 如果文件后缀是.tar.gz 用tar xzvf来解压
+# 如果文件后缀是.tar.bz 用tar xjvf来解压
+</code></pre><h2 id="apt-命令待更新">*apt 命令（待更新）</h2>
+<pre><code>apt [options] [command] [package ...]
+# options：可选，选项包括 -h（帮助），-y（当安装过程提示选择全部为&quot;yes&quot;），-q（不显示安装的过程）等等。
+# command：要进行的操作。
+# package：安装的包名。
+</code></pre><h2 id="查看软件安装路径">查看软件安装路径</h2>
+<ol>
+<li>通过rpm查看软件包名称</li>
+</ol>
+<pre><code>rpm -qal | grrp 软件名
+rpm -qal | grep mysql
+</code></pre><ol start="2">
+<li>yum 查找</li>
+</ol>
+<pre><code>yum search 软件名
+yum search mysql
+</code></pre><ol start="3">
+<li>卸载</li>
+</ol>
+<pre><code>rpm -e 软件名
+</code></pre>
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
